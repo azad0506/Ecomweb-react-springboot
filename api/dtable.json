@@ -1,0 +1,102 @@
+[
+  {
+    "id": 301,
+    "name": "Dining Table1",
+    "category": "Dining Table",
+    "description": "A modern white wooden dining table perfect for family gatherings.",
+    "size": "6 Seater",
+    "material": "Wood",
+    "storage": "None",
+    "warranty": "2 Years",
+    "rating": 4.5,
+    "reviews": 150,
+    "price": 699,
+    "image": "/image/dining_table.png",
+    "images": [
+      "/image/dining_table.png",
+      "/image/dining_table.png",
+      "/image/dining_table.png",
+      "/image/dining_table.png"
+    ]
+  },
+  {
+    "id": 302,
+    "name": "Dining Table2",
+    "category": "Dining Table",
+    "description": "A sleek black glass dining table adding elegance to any dining room.",
+    "size": "4 Seater",
+    "material": "Glass",
+    "storage": "None",
+    "warranty": "1 Year",
+    "rating": 4.2,
+    "reviews": 90,
+    "price": 599,
+    "image": "/image/dining_table.png",
+    "images": [
+      "/image/dining_table.png",
+      "/image/dining_table.png",
+      "/image/dining_table.png",
+      "/image/dining_table.png"
+    ]
+  },
+  {
+    "id": 303,
+    "name": "Dining Table3",
+    "category": "Dining Table",
+    "description": "A spacious brown dining table with wooden and metal finish, including storage.",
+    "size": "8 Seater",
+    "material": "Wood and Metal",
+    "storage": "With Storage",
+    "warranty": "3 Years",
+    "rating": 4.8,
+    "reviews": 210,
+    "price": 999,
+    "image": "/image/dining_table.png",
+    "images": [
+      "/image/dining_table.png",
+      "/image/dining_table.png",
+      "/image/dining_table.png",
+      "/image/dining_table.png"
+    ]
+  },
+  {
+    "id": 304,
+    "name": "Dining Table4",
+    "category": "Dining Table",
+    "description": "A stylish gray marble dining table providing a luxurious dining experience.",
+    "size": "4 Seater",
+    "material": "Marble",
+    "storage": "None",
+    "warranty": "2 Years",
+    "rating": 4.6,
+    "reviews": 130,
+    "price": 799,
+    "image": "/image/dining_table.png",
+    "images": [
+      "/image/dining_table.png",
+      "/image/dining_table.png",
+      "/image/dining_table.png",
+      "/image/dining_table.png"
+    ]
+  },
+  {
+    "id": 305,
+    "name": "Dining Table5",
+    "category": "Dining Table",
+    "description": "A beautiful beige wooden dining table with built-in storage compartments.",
+    "size": "6 Seater",
+    "material": "Wood",
+    "storage": "With Storage",
+    "warranty": "2 Years",
+    "rating": 4.4,
+    "reviews": 100,
+    "price": 849,
+    "image": "/image/dining_table.png",
+    "images": [
+      "/image/dining_table.png",
+      "/image/dining_table.png",
+      "/image/dining_table.png",
+      "/image/dining_table.png"
+    ]
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "id": 101,
+    "name": "Luxury Wooden Chair1",
+    "category": "Chair",
+    "description": "A premium wooden chair with a comfortable backrest.",
+    "color": "Brown",
+    "size": "Standard",
+    "material": "Solid Wood",
+    "storage": "Expandable",
+    "warranty": "1 Year",
+    "rating": 4.5,
+    "reviews": 250,
+    "price": 199,
+    "image": "/image/chair.png",
+    "images": [
+      "/image/chair.png",
+      "/image/chair.png",
+      "/image/chair.png",
+      "/image/chair.png"
+    ]
+  },
+  {
+    "id": 102,
+    "name": "Luxury Wooden Chair2",
+    "category": "Chair",
+    "description": "A stylish and durable wooden chair with a classic design.",
+    "color": "Brown",
+    "size": "Standard",
+    "material": "Solid Wood",
+    "storage": "Expandable",
+    "warranty": "1 Year",
+    "rating": 4.6,
+    "reviews": 270,
+    "price": 210,
+    "image": "/image/chair.png",
+    "images": [
+      "/image/chair.png",
+      "/image/chair.png",
+      "/image/chair.png",
+      "/image/chair.png"
+    ]
+  },
+  {
+    "id": 103,
+    "name": "Luxury Wooden Chair3",
+    "category": "Chair",
+    "description": "A modern wooden chair designed for maximum comfort.",
+    "color": "Brown",
+    "size": "Standard",
+    "material": "Solid Wood",
+    "storage": "Expandable",
+    "warranty": "1 Year",
+    "rating": 4.7,
+    "reviews": 280,
+    "price": 220,
+    "image": "/image/chair.png",
+    "images": [
+      "/image/chair.png",
+      "/image/chair.png",
+      "/image/chair.png",
+      "/image/chair.png"
+    ]
+  },
+  {
+    "id": 104,
+    "name": "Luxury Wooden Chair4",
+    "category": "Chair",
+    "description": "A spacious and elegant wooden chair with a strong build.",
+    "color": "Brown",
+    "size": "Standard",
+    "material": "Solid Wood",
+    "storage": "Expandable",
+    "warranty": "1 Year",
+    "rating": 4.5,
+    "reviews": 260,
+    "price": 205,
+    "image": "/image/chair.png",
+    "images": [
+      "/image/chair.png",
+      "/image/chair.png",
+      "/image/chair.png",
+      "/image/chair.png"
+    ]
+  },
+  {
+    "id": 105,
+    "name": "Luxury Wooden Chair5",
+    "category": "Chair",
+    "description": "A durable and classic wooden chair with a premium finish.",
+    "color": "Brown",
+    "size": "Standard",
+    "material": "Solid Wood",
+    "storage": "Expandable",
+    "warranty": "1 Year",
+    "rating": 4.8,
+    "reviews": 300,
+    "price": 230,
+    "image": "/image/chair.png",
+    "images": [
+      "/image/chair.png",
+      "/image/chair.png",
+      "/image/chair.png",
+      "/image/chair.png"
+    ]
+  }
+]

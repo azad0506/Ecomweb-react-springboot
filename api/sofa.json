@@ -1,0 +1,102 @@
+[
+  {
+    "id": 401,
+    "name": "Sofa1",
+    "category": "Sofa",
+    "description": "A stylish gray leather sofa with comfortable seating.",
+    "size": "3 Seater",
+    "material": "Leather",
+    "storage": "None",
+    "warranty": "2 Years",
+    "rating": 4.7,
+    "reviews": 120,
+    "price": 599,
+    "image": "/image/sofa.png",
+    "images": [
+      "/image/sofa.png",
+      "/image/sofa.png",
+      "/image/sofa.png",
+      "/image/sofa.png"
+    ]
+  },
+  {
+    "id": 402,
+    "name": "Sofa2",
+    "category": "Sofa",
+    "description": "A modern blue fabric sofa perfect for compact spaces.",
+    "size": "2 Seater",
+    "material": "Fabric",
+    "storage": "None",
+    "warranty": "2 Years",
+    "rating": 4.3,
+    "reviews": 80,
+    "price": 499,
+    "image": "/image/sofa.png",
+    "images": [
+      "/image/sofa.png",
+      "/image/sofa.png",
+      "/image/sofa.png",
+      "/image/sofa.png"
+    ]
+  },
+  {
+    "id": 403,
+    "name": "Sofa3",
+    "category": "Sofa",
+    "description": "A spacious brown wooden and fabric sofa with built-in storage.",
+    "size": "4 Seater",
+    "material": "Wood and Fabric",
+    "storage": "With Storage",
+    "warranty": "3 Years",
+    "rating": 4.8,
+    "reviews": 200,
+    "price": 799,
+    "image": "/image/sofa.png",
+    "images": [
+      "/image/sofa.png",
+      "/image/sofa.png",
+      "/image/sofa.png",
+      "/image/sofa.png"
+    ]
+  },
+  {
+    "id": 404,
+    "name": "Sofa4",
+    "category": "Sofa",
+    "description": "A luxurious black leather sofa offering a premium feel.",
+    "size": "5 Seater",
+    "material": "Leather",
+    "storage": "None",
+    "warranty": "1 Year",
+    "rating": 4.6,
+    "reviews": 150,
+    "price": 899,
+    "image": "/image/sofa.png",
+    "images": [
+      "/image/sofa.png",
+      "/image/sofa.png",
+      "/image/sofa.png",
+      "/image/sofa.png"
+    ]
+  },
+  {
+    "id": 405,
+    "name": "Sofa5",
+    "category": "Sofa",
+    "description": "A vibrant red fabric sofa with hidden storage compartments.",
+    "size": "3 Seater",
+    "material": "Fabric",
+    "storage": "With Storage",
+    "warranty": "2 Years",
+    "rating": 4.4,
+    "reviews": 110,
+    "price": 549,
+    "image": "/image/sofa.png",
+    "images": [
+      "/image/sofa.png",
+      "/image/sofa.png",
+      "/image/sofa.png",
+      "/image/sofa.png"
+    ]
+  }
+]

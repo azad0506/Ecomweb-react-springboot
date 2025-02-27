@@ -1,0 +1,107 @@
+[
+  {
+    "id": 1,
+    "name": "Luxury Wooden Bed1",
+    "description": "A premium wooden bed with soft cushions.",
+    "color": "Brown",
+    "size": "King",
+    "material": "Teak Wood",
+    "storage": "Yes",
+    "warranty": "5 years",
+    "rating": 4.8,
+    "reviews": 120,
+    "price": 799,
+    "image": "/image/bed.png",
+    "images": [
+      "/image/bed.png",
+      "/image/bed.png",
+      "/image/bed.png",
+      "/image/bed.png"
+    ],
+    "category": "Bed"
+  },
+  {
+    "id": 2,
+    "name": "Luxury Wooden Bed2",
+    "description": "A stylish and durable wooden bed with ample storage.",
+    "color": "Brown",
+    "size": "King",
+    "material": "Teak Wood",
+    "storage": "Yes",
+    "warranty": "5 years",
+    "rating": 4.7,
+    "reviews": 150,
+    "price": 850,
+    "image": "/image/bed.png",
+    "images": [
+      "/image/bed.png",
+      "/image/bed.png",
+      "/image/bed.png",
+      "/image/bed.png"
+    ],
+    "category": "Bed"
+  },
+  {
+    "id": 3,
+    "name": "Luxury Wooden Bed3",
+    "description": "A modern wooden bed designed for maximum comfort.",
+    "color": "Brown",
+    "size": "Queen",
+    "material": "Solid Wood",
+    "storage": "Expandable",
+    "warranty": "3 years",
+    "rating": 4.6,
+    "reviews": 200,
+    "price": 699,
+    "image": "/image/bed.png",
+    "images": [
+      "/image/bed.png",
+      "/image/bed.png",
+      "/image/bed.png",
+      "/image/bed.png"
+    ],
+    "category": "Bed"
+  },
+  {
+    "id": 4,
+    "name": "Luxury Wooden Bed4",
+    "description": "A spacious wooden bed with a strong build and elegant design.",
+    "color": "Brown",
+    "size": "King",
+    "material": "Solid Wood",
+    "storage": "Expandable",
+    "warranty": "4 years",
+    "rating": 4.5,
+    "reviews": 250,
+    "price": 899,
+    "image": "/image/bed.png",
+    "images": [
+      "/image/bed.png",
+      "/image/bed.png",
+      "/image/bed.png",
+      "/image/bed.png"
+    ],
+    "category": "Bed"
+  },
+  {
+    "id": 5,
+    "name": "Luxury Wooden Bed5",
+    "description": "A durable and classic wooden bed with premium finishing.",
+    "color": "Brown",
+    "size": "Queen",
+    "material": "Teak Wood",
+    "storage": "Yes",
+    "warranty": "5 years",
+    "rating": 4.8,
+    "reviews": 180,
+    "price": 750,
+    "image": "/image/bed.png",
+    "images": [
+      "/image/bed.png",
+      "/image/bed.png",
+      "/image/bed.png",
+      "/image/bed.png"
+    ],
+    "category": "Bed"
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "productdb": [
+    {
+      "id": "b168",
+      "name": "AZAD",
+      "price": 34,
+      "description": "45",
+      "category": "chair",
+      "brand": "s",
+      "stock": 2,
+      "image": "C:\\fakepath\\azad1.jpg"
+    },
+    {
+      "id": "d9a0",
+      "name": "AZAD",
+      "price": 566,
+      "description": "hjjhg",
+      "category": "chair",
+      "brand": "s",
+      "stock": 7,
+      "image": "C:\\fakepath\\azad1.jpg"
+    }
+  ]
+}
