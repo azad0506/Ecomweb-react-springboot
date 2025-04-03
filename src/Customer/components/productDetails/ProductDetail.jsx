@@ -1,14 +1,17 @@
 
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
-import { Radio, RadioGroup } from '@headlessui/react'
+import { Button, Radio, RadioGroup } from '@headlessui/react'
 import { Box, Grid, LinearProgress, Rating } from '@mui/material'
 import ProductReviewCard from './ProductReviewCard'
 import { mens_kurta } from '../../../Data/mens_kurta'
 import HomeSectionCard from '../HomeSectionCaresol/HomeSectionCard'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { findProductByid } from '../../../stateRedux/Product/productAction'
+import { addItemToCart } from '../../../stateRedux/Cart/cartAction'
 
 const product = {
     name: 'universaloutfit',
@@ -68,10 +71,31 @@ function classNames(...classes) {
 
 export default function ProductDetail() {
     const [selectedColor, setSelectedColor] = useState(product.colors[0])
-    const [selectedSize, setSelectedSize] = useState(product.sizes[2])
-    const navigate=useNavigate();
+    const [selectedSize, setSelectedSize] = useState("")
+    console.log("selectedsize", selectedSize)
 
-    const handleAddTocart=()=>{
+
+    const navigate = useNavigate();
+    const param = useParams();
+    // console.log("param", param)
+    const dispatch = useDispatch();
+    let store = useSelector(store => store)
+    console.log("store productDetails", store)
+
+    useEffect(() => {
+        let data = { productId: param.productId }
+        dispatch(findProductByid(data))
+    }, [param.productId])
+
+    const handleAddTocart =()=> {
+        let data = { productId: param.productId, size: selectedSize.name }
+        console.log("data handleAddTocart ", data)
+        dispatch(addItemToCart(data))
+
+        // Delay navigation slightly to allow console.log to appear
+        // setTimeout(() => {
+        //     navigate("/cart");
+        // }, 100);
         navigate("/cart")
     }
 
@@ -117,7 +141,7 @@ export default function ProductDetail() {
                         <div className='overflow-hidden rounded-lg max-w-[30rem] max-h-[35rem]'>
                             <img
                                 alt={product.images[0].alt}
-                                src={product.images[0].src}
+                                src={store.product.product?.imageUrl}
                                 className="h-full w-full object-cover object-center "
                             />
                         </div>
@@ -145,9 +169,10 @@ export default function ProductDetail() {
                     <div className="w-full max-w-full px-4 sm:px-6 lg:px-8 pb-16 lg:pb-24 border border-yellow-500">
 
                         <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-                            <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{product.name}</h1>
+                            <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{store.product.product?.brand}</h1>
                             <h1 className='text-lg lg:text-xl  text-gray-900 opacity-60 pt-1'>
-                                casual puff sleeve solid women white top
+                                {store.product.product?.title}
+
                             </h1>
                         </div>
 
@@ -155,9 +180,9 @@ export default function ProductDetail() {
                         <div className="mt-4 lg:row-span-3 lg:mt-0">
                             <h2 className="sr-only">Product information</h2>
                             <div className="flex space-x-5 items-center text-lg lg:text-xl text-gray-900 mt-6 ">
-                                <p className='font-semibold'>₹199</p>
-                                <p className='opacity-50 line-through'>₹211</p>
-                                <p className='text-green-600 font-semibold'>₹5% off</p>
+                                <p className='font-semibold'>₹{store.product.product?.discountPrice}</p>
+                                <p className='opacity-50 line-through'>₹{store.product.product?.price}</p>
+                                <p className='text-green-600 font-semibold'>₹{store.product.product?.discountPrsent} % off</p>
                             </div>
 
                             {/* Reviews */}
@@ -226,13 +251,14 @@ export default function ProductDetail() {
                                     </fieldset>
                                 </div>
 
-                                <button
+                                <Button
                                     // type="submit"
-                                    onClick={()=>handleAddTocart()}
+                                    // onClick={() => handleAddTocart()}
+                                    onClick={handleAddTocart}
                                     className="mt-10 flex  items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden"
                                 >
                                     Add to Cart
-                                </button>
+                                </Button>
                             </form>
                         </div>
 
@@ -332,7 +358,7 @@ export default function ProductDetail() {
                 <section className='pt-10 border-2 border-red-700' >
                     <h1 className='py-5 text-xl font-bold'>Similar Product</h1>
 
-                    
+
                     <Grid container spacing={3} justifyContent="center">
                         {mens_kurta.map((item, index) => (
                             <Grid item key={index} xs={12} sm={6} md={4} lg={3}>

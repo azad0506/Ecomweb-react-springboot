@@ -149,11 +149,11 @@ const steps = ['Login', 'Delivery Address', 'Order Summary', 'Payment'];
 export default function CheckOut() {
     const location = useLocation();
     const navigate = useNavigate();
-    
+
     // Extract step from query params and convert to number (default to 0 if invalid)
     const querySearch = new URLSearchParams(location.search);
     const stepFromQuery = parseInt(querySearch.get("step"), 10);
-    
+
     const [activeStep, setActiveStep] = React.useState(isNaN(stepFromQuery) ? 1 : stepFromQuery);
     const [completed, setCompleted] = React.useState({});
 
@@ -162,7 +162,7 @@ export default function CheckOut() {
         if (!isNaN(stepFromQuery) && stepFromQuery >= 1 && stepFromQuery < steps.length) {
             setActiveStep(stepFromQuery);
         }
-    }, [stepFromQuery]);    
+    }, [stepFromQuery]);
 
     const totalSteps = () => steps.length;
     const completedSteps = () => Object.keys(completed).length;
@@ -257,8 +257,9 @@ export default function CheckOut() {
                                 )}
                             </Box>
 
+                            {/* important */}
                             <div className='mt-10'>
-                                {stepFromQuery==1?<DeliveryAddressForm/>:<OrderSummary/>}
+                                {stepFromQuery == 1 ? <DeliveryAddressForm handleComplete={handleComplete} /> : <OrderSummary />}
                             </div>
                         </>
                     )}

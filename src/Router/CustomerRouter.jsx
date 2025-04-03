@@ -9,45 +9,40 @@ import Footer from '../Customer/components/Footer/Footer'
 import CheckOut from '../Customer/components/checkout/CheckOut'
 import Order from '../Customer/components/order/Order'
 import OrderDetails from '../Customer/components/order/OrderDetails'
+import CheckOut1 from '../Customer/components/checkout/Checkout1'
+import PaymentSuccess from '../Customer/components/Payment/PaymentSuccess'
 
 const CustomerRouter = () => {
   return (
     <>
-    
-  
-    <div>
-      <Navigation/>
-    </div>
 
-    <Routes>
-        <Route path='/' element={<HomePage/> } />
-        <Route path='/cart' element={<Cart/> } />
-        <Route path='/:labelOne/:labelTwo/:labelThree' element={<Product/> } />
-        <Route path='/product/:productId' element={<ProductDetail/> } />
-        <Route path='/checkout' element={<CheckOut/> } />
-        <Route path='/account/order' element={<Order/> } />
-        <Route path='/account/order/:orderId' element={<OrderDetails/> } />
-        
-    </Routes>
-  {/* <Navigation/> */}
+      <div>
+        <Navigation />
+      </div>
 
-            {/* <HomePage/> */}
-            {/* <Product/> */}
+      <Routes>
 
-            {/* <ProductDetail/> */}
+        <Route path='/login' element={<HomePage />} />
+        <Route path='/register' element={<HomePage />} />
 
-            {/* <Cart/> */}
+        <Route path='/' element={<HomePage />} />
+        <Route path='/cart' element={<Cart />} />
+        <Route path='/:labelOne/:labelTwo/:labelThree' element={<Product />} />
+        <Route path='/product/:productId' element={<ProductDetail />} />
+        <Route path='/checkout' element={<CheckOut />} />
+        {/* <Route path='/checkout' element={<CheckOut1 />} /> */}
 
-            {/* <CheckOut/> */}
+        <Route path='/account/order' element={<Order />} />
+        <Route path='/account/order/:orderId' element={<OrderDetails />} />
 
-            {/* <CheckOut1/> */}
+        <Route path='/payment/:orderId' element={<PaymentSuccess />} />
 
-            {/* <Order/> */}
-            {/* <OrderDetails/> */}
+      </Routes>
 
-            <div>
-              <Footer/>
-            </div>
+
+      <div>
+        <Footer />
+      </div>
     </>
   )
 }

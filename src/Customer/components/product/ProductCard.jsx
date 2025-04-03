@@ -7,7 +7,7 @@ const ProductCard = ({product}) => {
   const navigate=useNavigate();
     // console.log(product)
   return (
-    <div onClick={()=>navigate(`/product/${5}`)} className="productcard w-[15rem] m-3 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 transform  ">
+    <div onClick={()=>navigate(`/product/${product.id}`)} className="productcard w-[15rem] m-3 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 transform  ">
       
       <div className="image h-[20rem] relative overflow-hidden">
         <img 
@@ -23,10 +23,17 @@ const ProductCard = ({product}) => {
           <p className="text-gray-700">{product.title}</p>
         </div>
 
-        <div className="price flex items-center space-x-2 mt-2">
+        {/* <div className="price flex items-center space-x-2 mt-2">
           <p className="text-lg font-semibold">{product.discountedPrice}</p>
           <p className="line-through text-gray-500">{product.price}</p>
           <p className="text-green-600 font-semibold">{product.discountPersent}% off</p>
+        </div> */}
+
+        {/* for backend key */}
+         <div className="price flex items-center space-x-2 mt-2">
+          <p className="text-lg font-semibold">{product.discountPrice}</p>
+          <p className="line-through text-gray-500">{product.price}</p>
+          <p className="text-green-600 font-semibold">{product.discountPrsent}% off</p>
         </div>
       </div>
 

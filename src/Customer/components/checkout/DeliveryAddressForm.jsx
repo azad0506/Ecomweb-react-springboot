@@ -1,8 +1,13 @@
 import { Box, Button, Grid, TextField } from '@mui/material'
 import React from 'react'
 import AddressCart from '../AddressCart/AddressCart'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { createOrder } from '../../../stateRedux/Order/OrderAction'
 
-const DeliveryAddressForm = () => {
+const DeliveryAddressForm = ({handleComplete}) => {
+  const navigate=useNavigate();
+  const dispatch=useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);// Captures form data
@@ -13,18 +18,23 @@ const DeliveryAddressForm = () => {
       lastName: data.get("lastName"),
       streetAddress: data.get("address"),
       city: data.get("city"),
-      state: data.get("state"),
-      zipcode: data.get("zipcode"),
-      phoneNumber: data.get("phoneNumber"),
+      // state: data.get("state"),
+      zipCode: data.get("zipcode"),
+      mobile: data.get("phoneNumber"),
     }
-    console.log("address", address)
+    const orderData={address,navigate}
+    dispatch(createOrder(orderData))
+    console.log("address", orderData)
+
+    // ✅ Mark step as complete and navigate to step 2
+    handleComplete();
   }
   return (
     <div>
       <Grid container spacing={4}>
-        <Grid xs={12} lg={5} className='border rounded-e-md shadow-md h-[30.5rem] overflow-y-scroll'>
+        <Grid item xs={4} lg={5} className='border border-red-300 rounded-e-md shadow-md h-[30.5rem] overflow-y-scroll'>
 
-          <div className='p-5 py-7 border-b cursor-pointer'>
+          <div className='p-5 py-7 border-b cursor-pointer border border-red-300'>
             <AddressCart />
 
             <button className="bg-blue-600  hover:bg-blue-700 text-white font-semibold py-3 px-4 mt-1 rounded-lg shadow-md transition duration-300">
@@ -34,7 +44,7 @@ const DeliveryAddressForm = () => {
           </div>
         </Grid>
 
-        <Grid item xs={12} lg={7}>
+        <Grid item xs={8} lg={7}>
           <Box className="border rounded-s-md shadow-md p-5">
             <form action="" onSubmit={handleSubmit}>
               <Grid container spacing={3}>
@@ -82,7 +92,7 @@ const DeliveryAddressForm = () => {
                     autoComplete='given-name' >
                   </TextField>
                 </Grid>
-                <Grid item xs={12} sm={6} >
+                {/* <Grid item xs={12} sm={6} >
                   <TextField
                     required
                     id='state'
@@ -91,7 +101,7 @@ const DeliveryAddressForm = () => {
                     fullWidth
                     autoComplete='given-name' >
                   </TextField>
-                </Grid>
+                </Grid> */}
 
                 <Grid item xs={12} sm={6} >
                   <TextField

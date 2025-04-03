@@ -7,7 +7,7 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 const HomeSectionCarelo = ({data, sectionName}) => {
     let [activeIndex, setActiveIndex] = useState(0);
     const carouselRef = useRef(null); // Create a ref
-    console.log(carouselRef)
+    // console.log(carouselRef)
     const responsive = {
         0: { items: 1 },
         568: { items: 2 },

@@ -4,7 +4,7 @@
 // Mobile Menu (Bars3Icon): Opens the Dialog menu.
 
 
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useState } from 'react'
 import {
   Dialog,
   DialogBackdrop,
@@ -22,13 +22,9 @@ import {
 
 } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { Avatar, Button } from '@mui/material'
-// import { Link } from 'react-alice-carousel'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import AuthModal from '../Auth/AuthModal'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchUserProfile } from '../../stateRedux/Auth/Action'
-import { logout } from '../../stateRedux/Auth/Reducer'
+import { Avatar } from '@mui/material'
+import { Link } from 'react-alice-carousel'
+import { useNavigate } from 'react-router-dom'
 
 const navigation = {
   categories: [
@@ -157,35 +153,8 @@ const navigation = {
 export default function Navigation() {
   const [open, setOpen] = useState(false) // State for controlling mobile menu visibility
   const [isOpen, setIsOpen] = useState(false); // Controls avatar dropdown visibility
-  const [openAuthModal, setOpenAuthModal] = useState(false) //for auth modal
-
   const navigate = useNavigate();
-  let dispatch = useDispatch();//return a function
-  let location = useLocation();
-  let auth = useSelector((state) => {   //it is used to read the state {counter:0}
-    // console.log(state) //  {auth: {…}}
-    return state.auth;
-  });
-  const jwt = localStorage.getItem("jwt")
-  console.log(auth)
-  // let avtarName={auth.user.firstName[0]}
- 
-  useEffect(() => {
-    if (jwt) {
-      dispatch(fetchUserProfile(jwt))
-    }
-  }, [jwt, dispatch])
 
-  useEffect(() => {
-    if (auth.user) {
-      handleClose();
-    }
-
-    if (location.pathname === "/login" || location.pathname === "/register") {
-      navigate(-1)
-    }
-  }, [auth.user])
- 
   const handleCategoryClick = (category, section, item, close) => {
     console.log(category)
     navigate(`/${category.id}/${section.id}/${item.name}`)
@@ -195,22 +164,6 @@ export default function Navigation() {
     setIsOpen(false); // Close menu first
     navigate(path);   // Then navigate
   };
-  const handleClose = () => {
-    setOpenAuthModal(false);
-
-  }
-
-  const handleOpen = () => {
-    setOpenAuthModal(true)
-  }
-
-  const handleLogoutProfile=()=>{
-
-    dispatch(logout())
-    // handleCloseUserMenu()
-    setIsOpen(false)
-    localStorage.clear();
-  }
   return (
     <div className="bg-white">
       {/* Mobile menu  (Dialog is used for mobile view)*/}
@@ -251,7 +204,7 @@ export default function Navigation() {
                   ))}
                 </TabList>
               </div>
-
+              
               {/* click on menu button */}
               <TabPanels as={Fragment}>
                 {navigation.categories.map((category) => (
@@ -358,7 +311,6 @@ export default function Navigation() {
                 </a>
               </div>
 
-
               {/*desktop Flyout menus  */}
 
               <PopoverGroup className="hidden lg:ml-8 lg:block lg:self-stretch">
@@ -451,62 +403,48 @@ export default function Navigation() {
 
 
               <div className="ml-auto flex items-center">
+
                 {/* Avatar with Dropdown */}
-                {auth.user?.firstName ? (
-                  <div className="relative inline-block border border-blue-300">
-                    <div
-                      className="w-10 h-10 bg-gray-300 rounded-full cursor-pointer"
-                      onClick={() => setIsOpen(!isOpen)}
-                    >
-                      <Avatar className="size-8">
-                      {auth.user.firstName[0]}
-                      
-                      </Avatar>
-                    </div>
-
-                    {isOpen && (
-                      <div className="absolute right-0 mt-2 w-40 flex justify-center bg-white rounded-lg shadow-lg z-50  border border-green-600">
-                        <ul className="py-2 text-gray-700">
-                          <li>
-                            <Link
-                              to="/profile"
-                              className="block px-4 py-2 hover:bg-gray-100"
-                              onClick={() => setIsOpen(false)}
-                            >
-                              My Profile
-                            </Link>
-                          </li>
-                          <li>
-                            <button
-                              className="block w-full text-left px-4 py-2 hover:bg-gray-100"
-                              onClick={() => handleMyOrder("/account/order")}
-                            >
-                              My Orders
-                            </button>
-                          </li>
-                          <li>
-                            <Link
-                              to="/logout"
-                              className="block px-4 py-2 text-red-500 hover:bg-gray-100"
-                              // onClick={() => setIsOpen(false)}
-                              onClick={handleLogoutProfile}
-                            >
-                              Logout
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-                    )}
+                <div className="relative inline-block border border-blue-300">
+                  <div
+                    className="w-10 h-10 bg-gray-300 rounded-full cursor-pointer"
+                    onClick={() => setIsOpen(!isOpen)}
+                  >  <Avatar className="size-8" />
                   </div>
-                ) : (
-                  <Button
-                    onClick={handleOpen}
-                    className='text-sm font-medium text-gray-700 hover:text-gray-800'
-                  >
-                    Signin
-                  </Button>
-                )}
 
+                  {isOpen && (
+                    <div className="absolute right-0 mt-2 w-40 flex justify-center bg-white rounded-lg shadow-lg z-50  border border-green-600">
+                      <ul className="py-2 text-gray-700">
+                        <li>
+                          <Link
+                            to="/profile"
+                            className="block px-4 py-2 hover:bg-gray-100"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            My Profile
+                          </Link>
+                        </li>
+                        <li>
+                          <button
+                            className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                            onClick={() => handleMyOrder("/account/order")}
+                          >
+                            My Orders
+                          </button>
+                        </li>
+                        <li>
+                          <Link
+                            to="/logout"
+                            className="block px-4 py-2 text-red-500 hover:bg-gray-100"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            Logout
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
                 {/* Search */}
                 <div className="flex lg:ml-6">
                   <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
@@ -532,8 +470,6 @@ export default function Navigation() {
           </div>
         </nav>
       </header>
-
-      <AuthModal handleClose={handleClose} open={openAuthModal} />
     </div>
   )
 }

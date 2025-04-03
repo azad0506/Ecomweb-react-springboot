@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
     Dialog,
     DialogBackdrop,
@@ -18,7 +18,11 @@ import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from
 import ProductCard from './ProductCard'
 import { mens_kurta } from '../../../Data/mens_kurta'
 import FilterListIcon from '@mui/icons-material/FilterList';
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Category } from '@mui/icons-material'
+import { useDispatch, useSelector } from 'react-redux'
+import { findProducts } from '../../../stateRedux/Product/productAction'
+import { Pagination } from '@mui/material'
 const sortOptions = [
 
     { name: 'Newest', href: '#', current: false },
@@ -79,8 +83,8 @@ const filters = [
         ],
     },
     {
-        id: 'available',
-        name: 'Available',
+        id: 'stock',
+        name: 'stock',
         options: [
             { value: 'instock', label: 'in stock', checked: false },
             { value: 'outofstock', label: 'out of stock', checked: false },
@@ -98,7 +102,64 @@ export default function Product() {
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
    let location= useLocation();
    let navigate=useNavigate();
-   console.log(location)
+   let param=useParams();
+//    console.log(location)
+   console.log(param)
+
+   let dispatch=useDispatch();
+let store=useSelector(store=>store)
+console.log("store", store)
+console.log(store.product.products.content)
+
+   let decodedQueryString=decodeURIComponent(location.search);
+   const searchParam= new URLSearchParams(decodedQueryString);
+   const colorValue=searchParam.get("color");//color key which available in url
+   const sizeValue=searchParam.get("size");
+   const priceValue=searchParam.get("price");
+   const discountValue=searchParam.get("discount");
+   const sortValue=searchParam.get("sort");
+   const pageNumber=searchParam.get("page")|| 1;
+   const stock=searchParam.get("stock");
+
+   const handlePage=(event,value)=>{
+    console.log("Arguments value:", value);
+     // Create a URLSearchParams instance from the current location.search
+     const searchparam = new URLSearchParams(location.search);
+     // Update the 'page' parameter with the new value
+     searchparam.set("page", value);
+     // Convert the search params to a query string
+     const query = searchparam.toString();
+    
+     // Navigate to the updated query string
+    navigate({search:`?${query}`})
+   }
+useEffect( ()=>{
+
+    const [minPrice,maxPrice]=priceValue===null?[0,10000]:priceValue.split("-").map(Number);
+
+      // ✅ Backend ke hisaab se sahi format me data banao
+    const data={
+        category:param.labelThree || "",
+        colors:colorValue ||[],
+        size:sizeValue || [],
+        minPrice,
+        maxPrice,
+        minDiscount:discountValue ||0,
+        sort:sortValue || "price_asc",
+        pageNumber:pageNumber-1,
+        pageSize:2 ,
+        stock:stock || ""
+    }
+    console.log("data",data)
+   dispatch(findProducts(data)) 
+   console.log("products")
+},[param.labelThree,
+    colorValue,sizeValue,priceValue,discountValue,
+    sortValue,pageNumber,stock
+])
+
+
+
 
 //  function for  multiple filter 
    const handleFilter=(value,sectionId)=>{
@@ -359,10 +420,21 @@ export default function Product() {
                             {/*  Your content Product grid */}
                             <div className="lg:col-span-3 w-full">
                                 <div className='flex flex-wrap justify-center bg-white py-5'>
-                                    {mens_kurta.map((item) => <ProductCard product={item} />)}
+                                    {/* {mens_kurta.map((item) => <ProductCard product={item} />)} */}
+                                    {store.product.products?.content?.map( (item)=>(
+                                        <ProductCard key={item.id} product={item} />
+                                    ))}
 
                                 </div>
                             </div>
+                        </div>
+                    </section>
+
+                    {/* for pagination component */}
+                    <section className='w-full px=[3.6rem] mb-2 border border-gray-800'>
+                        <div className='px-4 py-5 flex justify-center'>
+                        <Pagination count={store.product.products?.totalPages} color="secondary"  onChange={handlePage}/>
+
                         </div>
                     </section>
                 </main>

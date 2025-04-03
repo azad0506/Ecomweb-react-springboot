@@ -13,3 +13,6 @@ Currently, two official plugins are available:
 tailwind css
 mui 
 npm i react-alice-carousel
+
+
+state=> for redux 
