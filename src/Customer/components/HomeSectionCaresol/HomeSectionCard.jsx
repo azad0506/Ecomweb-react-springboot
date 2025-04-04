@@ -2,7 +2,7 @@ import React from "react";
 
 const HomeSectionCard = (props) => {
     let {product}=props;
-    // console.log(product)
+    console.log(product)
   return (
     <div className="p-4 bg-white rounded-xl shadow-lg flex flex-col items-center text-center
     overflow-hidden border border-blue-300 ">

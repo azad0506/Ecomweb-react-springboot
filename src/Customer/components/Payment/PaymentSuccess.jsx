@@ -10,24 +10,36 @@ import AddressCart from '../AddressCart/AddressCart';
 const PaymentSuccess = () => {
     const [paymentId, setPaymentId] = useState();
     const [paymentStatus, setPaymentStatus] = useState();
-    const [referenceId, setRefernceId] = useState();
+
     const dispatch = useDispatch();
+
     const { orderId } = useParams();
     console.log("orderId payment success", orderId);
+
     const location = useLocation();
+    const urlParam = new URLSearchParams(location.search);
+
+    useEffect(() => {
+        setPaymentId(urlParam.get("razorpay_payment_id")); //takes from url which is same
+      const   extractedPaymentStatus=urlParam.get("razorpay_payment_link_status")//otherwise not proper hit api
+
+        if (extractedPaymentStatus) {
+            setPaymentStatus(extractedPaymentStatus);
+            console.log("Extracted Payment Status:", extractedPaymentStatus);
+        }
+    }, [location.search]);  // Runs whenever the URL parameters change
 
     const { order } = useSelector(store => store)
     console.log("order success", order)
 
-    const urlParam = new URLSearchParams(location.search);
-    useEffect(() => {
-        setPaymentId(urlParam.get("razorpay_payment_id")); //takes from url which is same
-        setPaymentStatus(urlParam.get("razorpay_payment_link_status"))//otherwise not proper hit api
-    }, [])
     useEffect(() => {
         const data = { orderId, paymentId };
         dispatch(getOrderById(orderId))
-        dispatch(updatePayment(data))
+
+        if(paymentId && orderId){
+
+            dispatch(updatePayment(data))
+        }
     }, [orderId, paymentId])
     return (
         <div>

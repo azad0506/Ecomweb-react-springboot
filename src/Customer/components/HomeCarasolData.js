@@ -1,20 +1,20 @@
 
-import r1 from "../../../public/image/r1.jpg"
-import h1 from "../../../public/image/h1.jpg"
+import h5 from "../../../public/image/h5.jpg"
+import h4 from "../../../public/image/h4.jpg"
 export const HomeCarasolData=[
    
    
     {
-        image:"/image/h2.jpg",
+        image:"/image/h1.jpg",
         path: "/category/shoes"
     },
    
     {
-        image:r1,
-        path:"../../../public/image/r1.jpg"
+        image:h5,
+        path:"../../../public/image/h3.jpg"
     },
     {
-        image: h1,
+        image: h4,
         path: "/category/clothing"
     },
 ]
