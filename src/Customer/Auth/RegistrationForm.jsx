@@ -46,7 +46,7 @@ const RegistrationForm = () => {
         // ✅ registerSuccess me user ka data pass karo
         dispatch(registerSuccess(user));
         toast.success(user.message)
-        navigate("/login")
+        // navigate("/login")
 
       })
       .catch(() => {

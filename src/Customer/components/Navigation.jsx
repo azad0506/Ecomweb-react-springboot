@@ -57,6 +57,7 @@ const navigation = {
             { name: 'Tops', href: '#' },
             { name: 'Dresses', href: '#' },
             { name: 'Pants', href: '#' },
+            { name: 'Shirts', href: '#' },
             { name: 'Denim', href: '#' },
             { name: 'Sweaters', href: '#' },
             { name: 'T-Shirts', href: '#' },
@@ -116,6 +117,8 @@ const navigation = {
           items: [
             { name: 'Tops', href: '#' },
             { name: 'Pants', href: '#' },
+            { name: 'Shirts', href: '#' },
+            { name: 'Denim', href: '#' },
             { name: 'Sweaters', href: '#' },
             { name: 'T-Shirts', href: '#' },
             { name: 'Jackets', href: '#' },
@@ -169,10 +172,11 @@ export default function Navigation() {
   const jwt = localStorage.getItem("jwt")
   console.log(auth)
   // let avtarName={auth.user.firstName[0]}
- 
+
   useEffect(() => {
     if (jwt) {
       dispatch(fetchUserProfile(jwt))
+      console.log("fetchUserProfile in navigation");
     }
   }, [jwt, dispatch])
 
@@ -181,11 +185,11 @@ export default function Navigation() {
       handleClose();
     }
 
-    if (location.pathname === "/login" || location.pathname === "/register") {
+    if (location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/logout") {
       navigate(-1)
     }
   }, [auth.user])
- 
+
   const handleCategoryClick = (category, section, item, close) => {
     console.log(category)
     navigate(`/${category.id}/${section.id}/${item.name}`)
@@ -204,7 +208,7 @@ export default function Navigation() {
     setOpenAuthModal(true)
   }
 
-  const handleLogoutProfile=()=>{
+  const handleLogoutProfile = () => {
 
     dispatch(logout())
     // handleCloseUserMenu()
@@ -348,14 +352,14 @@ export default function Navigation() {
 
               {/* Logo */}
               <div className="ml-4 flex lg:ml-0">
-                <a href="#">
+                <Link to="/">
                   <span className="sr-only">Your Company</span>
                   <img
                     alt=""
                     src="https://tailwindui.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
                     className="h-8 w-auto"
                   />
-                </a>
+                </Link>
               </div>
 
 
@@ -459,8 +463,8 @@ export default function Navigation() {
                       onClick={() => setIsOpen(!isOpen)}
                     >
                       <Avatar className="size-8">
-                      {auth.user.firstName[0]}
-                      
+                        {auth.user.firstName[0]}
+
                       </Avatar>
                     </div>
 
@@ -517,14 +521,14 @@ export default function Navigation() {
 
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
-                  <a href="#" className="group -m-2 flex items-center p-2">
+                  <Link to="/cart" className="group -m-2 flex items-center p-2">
                     <ShoppingBagIcon
                       aria-hidden="true"
                       className="size-6 shrink-0 text-gray-400 group-hover:text-gray-500"
                     />
                     <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
                     <span className="sr-only">items in cart, view bag</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
 

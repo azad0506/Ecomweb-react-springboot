@@ -2,7 +2,7 @@
 
 import { Button } from "@headlessui/react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginFailure, loginRequest, loginSuccess } from "../../stateRedux/Auth/Reducer";
 import axios from "axios";
@@ -32,7 +32,9 @@ const LoginForm = () => {
         const user = response.data;
 
         if (user.jwt) {
+          console.log("inside if in Login Form");
           localStorage.setItem("jwt", user.jwt);
+          
         }
         // ✅ registerSuccess me user ka data pass karo
         dispatch(loginSuccess(user));
@@ -44,6 +46,15 @@ const LoginForm = () => {
         dispatch(loginFailure(error.message));
       })
     console.log("Form submitted", formData);
+      const auth = useSelector((state) => state.auth); // ✅ auth state
+     useEffect(() => {
+        console.log("fetchUserProfile after in Login.jsx");
+        const user = auth.user; // Profile fetched user
+        if (user?.role === "ROLE_ADMIN") {
+          navigate("/admin");
+        }
+       
+      }, [auth.user, navigate]);
   };
 
   return (

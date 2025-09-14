@@ -37,7 +37,7 @@ const filters = [
         name: 'Color',
         options: [
             { value: 'white', label: 'White', checked: false },
-            { value: 'beige', label: 'Beige', checked: false },
+            { value: 'black', label: 'black', checked: false },
             { value: 'blue', label: 'Blue', checked: false },
             { value: 'brown', label: 'Brown', checked: false },
             { value: 'green', label: 'Green', checked: false },
@@ -140,6 +140,7 @@ useEffect( ()=>{
       // ✅ Backend ke hisaab se sahi format me data banao
     const data={
         category:param.labelThree || "",
+        toplevelcategory:param.labelOne || "",
         colors:colorValue ||[],
         size:sizeValue || [],
         minPrice,
@@ -147,13 +148,13 @@ useEffect( ()=>{
         minDiscount:discountValue ||0,
         sort:sortValue || "price_asc",
         pageNumber:pageNumber-1,
-        pageSize:2 ,
+        pageSize:10 ,
         stock:stock || ""
     }
     console.log("data",data)
    dispatch(findProducts(data)) 
    console.log("products")
-},[param.labelThree,
+},[param.labelThree,param,
     colorValue,sizeValue,priceValue,discountValue,
     sortValue,pageNumber,stock
 ])

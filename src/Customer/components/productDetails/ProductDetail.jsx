@@ -12,6 +12,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { findProductByid } from '../../../stateRedux/Product/productAction'
 import { addItemToCart } from '../../../stateRedux/Cart/cartAction'
+import { getAllReview } from '../../../stateRedux/Review/ReviewAction'
+import PostReviewForm from './PostReviewForm '
 
 const product = {
     name: 'universaloutfit',
@@ -49,7 +51,7 @@ const product = {
         { name: 'S', inStock: true },
         { name: 'M', inStock: true },
         { name: 'L', inStock: true },
-        { name: 'XL', inStock: true },
+        { name: 'XLmn', inStock: true },
 
     ],
     description:
@@ -87,7 +89,7 @@ export default function ProductDetail() {
         dispatch(findProductByid(data))
     }, [param.productId])
 
-    const handleAddTocart =()=> {
+    const handleAddTocart = () => {
         let data = { productId: param.productId, size: selectedSize.name }
         console.log("data handleAddTocart ", data)
         dispatch(addItemToCart(data))
@@ -99,6 +101,13 @@ export default function ProductDetail() {
         navigate("/cart")
     }
 
+    // Review
+    useEffect( ()=>{
+    //   let data = { productId: param.productId }
+    const productId= param.productId;
+    console.log("productId", productId)
+        dispatch(getAllReview(productId))
+    },[param])
     return (
         <div className="bg-white">
             <div className="pt-6">
@@ -202,7 +211,15 @@ export default function ProductDetail() {
                                 {/* Sizes */}
                                 <div className="mt-10">
                                     <div className="flex items-center justify-between">
-                                        <h3 className="text-sm font-medium text-gray-900">Size</h3>
+                                        {/* ✅ Added: Show selected size */}
+                                        <h3 className="text-sm font-medium text-gray-900">
+                                            Size
+                                            {selectedSize && (
+                                                <spa className="mt-2 text-sm text-gray-950">
+                                                    <strong>: {selectedSize.name}</strong>
+                                                </spa>
+                                            )}
+                                        </h3>
 
                                     </div>
 
@@ -217,14 +234,17 @@ export default function ProductDetail() {
                                                     key={size.name}
                                                     value={size}
                                                     disabled={!size.inStock}
-                                                    className={classNames(
-                                                        size.inStock
-                                                            ? 'cursor-pointer bg-white text-gray-900 shadow-xs'
-                                                            : 'cursor-not-allowed bg-gray-50 text-gray-200',
-                                                        'group relative flex items-center justify-center rounded-md border px-4 py-3 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-hidden data-focus:ring-2 data-focus:ring-indigo-500 sm:flex-1 sm:py-6',
-                                                    )}
+                                                    className={({ checked, active }) =>
+                                                        classNames(
+                                                            size.inStock
+                                                                ? 'cursor-pointer bg-white text-gray-900 shadow-sm'
+                                                                : 'cursor-not-allowed bg-gray-50 text-gray-200',
+                                                            checked ? 'ring-2 ring-indigo-500 border-indigo-400' : 'border-gray-300',
+                                                            'group relative flex items-center justify-center rounded-md border px-4 py-3 text-sm font-medium uppercase sm:flex-1 sm:py-6'
+                                                        )
+                                                    }
                                                 >
-                                                    <span>{size.name}</span>
+                                                    <span >{size.name}</span>
                                                     {size.inStock ? (
                                                         <span
                                                             aria-hidden="true"
@@ -235,14 +255,14 @@ export default function ProductDetail() {
                                                             aria-hidden="true"
                                                             className="pointer-events-none absolute -inset-px rounded-md border-2 border-gray-200"
                                                         >
-                                                            <svg
+                                                            {/* <svg
                                                                 stroke="currentColor"
                                                                 viewBox="0 0 100 100"
                                                                 preserveAspectRatio="none"
                                                                 className="absolute inset-0 size-full stroke-2 text-gray-200"
                                                             >
                                                                 <line x1={0} x2={100} y1={100} y2={0} vectorEffect="non-scaling-stroke" />
-                                                            </svg>
+                                                            </svg> */}
                                                         </span>
                                                     )}
                                                 </Radio>
@@ -302,13 +322,16 @@ export default function ProductDetail() {
                 {/* rating and review */}
                 <section>
                     <h1>Recent Review & Rating</h1>
+                   
                     <div className="border p-5">
+                         {/* POST NEW REVIEW */}
+                    <PostReviewForm productId={param.productId}/>
                         <Grid container>
                             <Grid item xs={7}>
                                 <div className="space-y-5">
-                                    {[1, 1, 1].map((item, index) =>
+                                    {store?.review.reviews?.map((item, index) =>
                                         <div key={index}>
-                                            <ProductReviewCard />
+                                            <ProductReviewCard reviewProp={item}/>
                                         </div>
                                     )}
                                 </div>

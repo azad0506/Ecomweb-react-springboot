@@ -34,7 +34,7 @@ const cartSlice = createSlice({
         getCartSuccess: (state, action) => {
             state.isLoading = false;
             state.cart = action.payload;
-            state.cartItems = action.payload.cartItem;
+            state.cartItems = action.payload.cartItem; //cart has cartItem
         },
         getCartFailure: (state, action) => {
             state.isLoading = false;
@@ -65,7 +65,9 @@ const cartSlice = createSlice({
             state.isLoading = false;
             state.cartItems = state.cartItems.filter(item => item.id !== action.payload);
             // ✅ Store deleted item ID for tracking
-            state.deleteCartItem =action.cartItemId;
+            // state.deleteCartItem =action.cartItemId;
+            // state.deleteCartItem =action.payload.deleteCartItem;
+            state.deleteCartItem = { id: 101, product: "Shirt" }; // full object
         },
         removeCartFailure: (state, action) => {
             state.isLoading = false;

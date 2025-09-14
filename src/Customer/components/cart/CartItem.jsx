@@ -8,7 +8,7 @@ import { removeCartItem, updateCartItem } from '../../../stateRedux/Cart/cartAct
 import { useDispatch } from 'react-redux';
 
 const CartItem = ({ item }) => {
-    console.log("item", item)
+    // console.log("item", item)
 
     let dispatch = useDispatch();
     // 🔹 Increase Quantity

@@ -64,7 +64,7 @@ console.log("store ordersummary",order)
           onClick={handleCheckOut}
             className="mt-5 w-full flex  items-center justify-center rounded-md border border-transparent bg-indigo-600 px-2rem py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden"
           >
-           Checkout
+           Checkout payment
           </button>
         </div>
       </div>

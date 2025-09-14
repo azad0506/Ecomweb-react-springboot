@@ -5,7 +5,7 @@ import "./ProductCard.css"
 import { useNavigate } from 'react-router-dom';
 const ProductCard = ({product}) => {
   const navigate=useNavigate();
-    // console.log(product)
+    console.log(product)
   return (
     <div onClick={()=>navigate(`/product/${product.id}`)} className="productcard w-[15rem] m-3 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 transform  ">
       
