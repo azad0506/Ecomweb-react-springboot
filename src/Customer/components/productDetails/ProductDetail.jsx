@@ -1,6 +1,4 @@
 
-'use client'
-
 import { useEffect, useState } from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { Button, Radio, RadioGroup } from '@headlessui/react'
@@ -90,7 +88,8 @@ export default function ProductDetail() {
     }, [param.productId])
 
     const handleAddTocart = () => {
-        let data = { productId: param.productId, size: selectedSize.name }
+       // let data = { productId: param.productId, size: selectedSize.name }
+       let data = { productId: param.productId, size: selectedSize.name,quantity: 1, price: store.product.product?.price }
         console.log("data handleAddTocart ", data)
         dispatch(addItemToCart(data))
 
