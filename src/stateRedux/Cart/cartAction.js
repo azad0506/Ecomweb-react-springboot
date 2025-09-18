@@ -15,12 +15,20 @@ export const getCartItems = () => async (dispatch) => {
 };
 
 export const addItemToCart = (reqData) =>async (dispatch) => {
-    // console.log("reqData cart ",reqData)
+     console.log("reqData cart ",reqData)
+     console.log("additemto cart",localStorage.getItem("jwt") )
     dispatch(cartItemRequest());
 
     try {
+          if(!localStorage.getItem("jwt")){
+            console.log("token is not found for calling add tocart")
+            return;
+        }
+        else{
+            console.log("token is  found for calling add tocart")
+        }
         const { data } =await api.put("/api/cart/add", reqData)
-        console.log("data cart ",data.message)
+        console.log("data cart addItemToCart Called ",data)
         dispatch(cartItemSuccess(data))
     } catch (error) {
         dispatch(cartItemFailure(error.message))
