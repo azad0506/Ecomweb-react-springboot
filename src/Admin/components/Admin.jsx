@@ -1,11 +1,13 @@
 import React from 'react'
-import { Link, Route, Routes } from 'react-router-dom'
+import { Link, Route, Routes, useNavigate } from 'react-router-dom'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import Dashboard from './pages/Dashboard';
 import CreateProductForm from './pages/CreateProductForm';
 import ProductTable from './pages/ProductTable';
 import OrdersTable from './pages/OrdersTable';
+import { logout } from '../../stateRedux/Auth/Reducer';
+import { useDispatch } from 'react-redux';
 const menu = [
   { name: "Dashboard", path: "/admin", icon: <DashboardIcon /> },
   { name: "Products", path: "/admin/products", icon: <DashboardIcon /> },
@@ -13,12 +15,21 @@ const menu = [
   { name: "Orders", path: "/admin/orders", icon: <DashboardIcon /> },
   { name: "AddProduct", path: "/admin/product/create", icon: <DashboardIcon /> },
   // { name: "Account", path: "/admin/account", icon: <AccountCircleIcon /> }
-
-
 ]
+
 const Admin = () => {
+  const dispatch = useDispatch();
+const navigate = useNavigate();
+ const handleLogoutProfile = () => {
+
+    dispatch(logout())
+    
+    localStorage.clear();
+    navigate("/")
+  }
   return (
     <div>
+      <button onClick={handleLogoutProfile}>Logout</button>
       <div className="flex min-h-screen">
 
         {/* Sidebar */}

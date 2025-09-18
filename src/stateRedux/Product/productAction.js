@@ -1,6 +1,6 @@
 import axios from "axios";
 import { deleteProductByIdFailure, deleteProductByIdSuccess, deleteProductRequest, fetchMenProductsFailure, fetchMenProductsRequest, fetchMenProductsSuccess, fetchWomenProductsFailure, fetchWomenProductsRequest, fetchWomenProductsSuccess, findProductByIdFailure, findProductByIdRequest, findProductByIdSuccess, findProductsFailure, findProductsRequest, findProductsSuccess } from "./ProductSlice"
-import { api } from "../../config/apiconfig";
+import { api, API_BASE_URL } from "../../config/apiconfig";
 
 
  export const findProducts=(reqData)=> async(dispatch)=>{
@@ -81,7 +81,8 @@ export const getAllProduct=(reqdata)=>async(dispatch)=>{
 export const fetchWomenProducts = () => async (dispatch) => {
     try {
       dispatch(fetchWomenProductsRequest());
-      const { data } = await axios.get("http://localhost:8485/api/toplevelcategory/Women");
+      //const { data } = await axios.get("http://localhost:8485/api/toplevelcategory/Women");
+    const { data } = await axios.get(`${API_BASE_URL}/api/toplevelcategory/Women`);
       dispatch(fetchWomenProductsSuccess(data));
     } catch (error) {
       dispatch(fetchWomenProductsFailure(error.message));
@@ -92,8 +93,8 @@ export const fetchMenProducts = () => async (dispatch) => {
     try {
       dispatch(fetchMenProductsRequest());
     //   const { data } = await api.get("/api/top-category/men");
-    const {data}=await axios.get(`http://localhost:8485/api/toplevelcategory/Men`)
-    console.log("category data", data)
+    const {data}=await axios.get(`${API_BASE_URL}/api/toplevelcategory/Men`)
+    console.log("Men category data", data)
     dispatch(fetchMenProductsSuccess(data));
     } catch (error) {
       dispatch(fetchMenProductsFailureProductsFailure(error.message));

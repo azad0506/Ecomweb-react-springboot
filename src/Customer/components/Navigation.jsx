@@ -54,7 +54,7 @@ const navigation = {
           id: 'clothing',
           name: 'Clothing',
           items: [
-            { name: 'Tops', href: '#' },
+            { name: 'Tops', href: `Tops` },
             { name: 'Dresses', href: '#' },
             { name: 'Pants', href: '#' },
             { name: 'Shirts', href: '#' },
@@ -115,9 +115,9 @@ const navigation = {
           id: 'clothing',
           name: 'Clothing',
           items: [
-            { name: 'Tops', href: '#' },
+            { name: 'Tops', href: 'Tops' },
             { name: 'Pants', href: '#' },
-            { name: 'Shirts', href: '#' },
+            { name: 'Shirts', href: 'Shirts' },
             { name: 'Denim', href: '#' },
             { name: 'Sweaters', href: '#' },
             { name: 'T-Shirts', href: '#' },
@@ -181,6 +181,14 @@ export default function Navigation() {
   }, [jwt, dispatch])
 
   useEffect(() => {
+    console.log("fetchUserProfile after in Login.jsx");
+    const user = auth.user; // Profile fetched user
+    if (user?.role === "ROLE_ADMIN") {
+      navigate("/admin");
+    }
+
+  }, [auth.user, navigate]);
+  useEffect(() => {
     if (auth.user) {
       handleClose();
     }
@@ -193,7 +201,11 @@ export default function Navigation() {
   const handleCategoryClick = (category, section, item, close) => {
     console.log(category)
     navigate(`/${category.id}/${section.id}/${item.name}`)
-    close(); //Closes the popover(mui component)
+    if (close) {
+      close(); // desktop popover band karo
+    } else {
+      setOpen(false); // mobile drawer band karo
+    }
   }
   const handleMyOrder = (path) => {
     setIsOpen(false); // Close menu first
@@ -214,6 +226,7 @@ export default function Navigation() {
     // handleCloseUserMenu()
     setIsOpen(false)
     localStorage.clear();
+    navigate("/")
   }
   return (
     <div className="bg-white">
@@ -290,9 +303,10 @@ export default function Navigation() {
                         >
                           {section.items.map((item) => (
                             <li key={item.name} className="flow-root">
-                              <a href={item.href} className="-m-2 block p-2 text-gray-500">
+                              <p className="-m-2 block p-2 text-gray-500 cursor-pointer hover:text-gray-800"
+                                onClick={() => handleCategoryClick(category, section, item)} >
                                 {item.name}
-                              </a>
+                              </p>
                             </li>
                           ))}
                         </ul>
@@ -457,7 +471,7 @@ export default function Navigation() {
               <div className="ml-auto flex items-center">
                 {/* Avatar with Dropdown */}
                 {auth.user?.firstName ? (
-                  <div className="relative inline-block border border-blue-300">
+                  <div className="relative inline-block ">
                     <div
                       className="w-10 h-10 bg-gray-300 rounded-full cursor-pointer"
                       onClick={() => setIsOpen(!isOpen)}
@@ -490,7 +504,7 @@ export default function Navigation() {
                           </li>
                           <li>
                             <Link
-                              to="/logout"
+                              // to="/logout"
                               className="block px-4 py-2 text-red-500 hover:bg-gray-100"
                               // onClick={() => setIsOpen(false)}
                               onClick={handleLogoutProfile}

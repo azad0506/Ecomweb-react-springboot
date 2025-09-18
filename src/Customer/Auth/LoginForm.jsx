@@ -1,7 +1,7 @@
 
 
 import { Button } from "@headlessui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginFailure, loginRequest, loginSuccess } from "../../stateRedux/Auth/Reducer";
@@ -36,7 +36,7 @@ const LoginForm = () => {
           localStorage.setItem("jwt", user.jwt);
           
         }
-        // ✅ registerSuccess me user ka data pass karo
+        //  registerSuccess me user ka data pass karo
         dispatch(loginSuccess(user));
         toast.success(user.message)
        
@@ -46,16 +46,9 @@ const LoginForm = () => {
         dispatch(loginFailure(error.message));
       })
     console.log("Form submitted", formData);
-      const auth = useSelector((state) => state.auth); // ✅ auth state
-     useEffect(() => {
-        console.log("fetchUserProfile after in Login.jsx");
-        const user = auth.user; // Profile fetched user
-        if (user?.role === "ROLE_ADMIN") {
-          navigate("/admin");
-        }
-       
-      }, [auth.user, navigate]);
+     
   };
+  
 
   return (
     <div className="flex flex-col justify-center items-center bg-white p-6   rounded-lg shadow-lg w-full max-w-md ">

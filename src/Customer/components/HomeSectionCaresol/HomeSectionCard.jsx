@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const HomeSectionCard = (props) => {
   let { product } = props;
-  console.log('product',product);
+  //console.log('product',product);
   const navigate = useNavigate();
   return (
     <div className="p-4 bg-white rounded-xl shadow-lg flex flex-col items-center text-center

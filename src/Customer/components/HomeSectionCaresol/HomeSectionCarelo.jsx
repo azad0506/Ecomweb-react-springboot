@@ -30,7 +30,7 @@ const HomeSectionCarelo = ({data, sectionName}) => {
 
     const syncActiveIndex = ({ item }) => setActiveIndex(item)
     return (
-        <div className="relative px-4 lg:px-8 border border-green-500">
+        <div className="relative px-4 lg:px-8 ">
             <h2 className='text-2xl font-extrabold text-gray-800 py-5'>{sectionName}</h2>
             {/* Left Button */}
             {activeIndex > 0 &&
