@@ -7,21 +7,21 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./stateRedux/store";
 
-createRoot(document.getElementById("root")).render(
-    <BrowserRouter>
-        <Provider store={store}>
-            <App />
-        </Provider>
-    </BrowserRouter>
-
-)
-
-
-
-// //for createbrowser Router
 // createRoot(document.getElementById("root")).render(
+//     <BrowserRouter>
 //         <Provider store={store}>
 //             <App />
 //         </Provider>
+//     </BrowserRouter>
 
 // )
+
+
+
+//for createbrowser Router
+createRoot(document.getElementById("root")).render(
+        <Provider store={store}>
+            <App />
+        </Provider>
+
+)

@@ -1,5 +1,6 @@
 import React, { lazy } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
+import ErrorPage from '../ErrorPage';
 
 // ✅ Lazy Imports
 const CustomerLayout = lazy(() => import("./CustomerLayout"));
@@ -23,6 +24,7 @@ export const myRoute = createBrowserRouter([
   {
     path: "/",
     element: <CustomerLayout />,
+    errorElement:<ErrorPage/>,
     children: [
       { index: true, element: <HomePage /> },
       { path: "cart", element: <Cart /> },
@@ -39,6 +41,7 @@ export const myRoute = createBrowserRouter([
   {
     path: "/admin",
     element: <AdminLayout />,
+     errorElement:<ErrorPage/>,
     children: [
       { index: true, element: <Dashboard /> },
       { path: "products", element: <ProductTable /> },
